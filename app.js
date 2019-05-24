@@ -1,9 +1,8 @@
-const { app, BrowserWindow, globalShortcut } = require("electron");
+const { app, BrowserWindow, globalShortcut, Tray, Menu } = require("electron");
 const path = require("path");
-const tray = require("./tray");
 
 let friday = null;
-let trayIcon = null;
+let tray = null;
 let isActive = true;
 
 app.on("ready", () => {
@@ -16,9 +15,22 @@ app.on("ready", () => {
     transparent: true
   });
 
-  trayIcon = tray.create(app, friday);
-
-  friday.loadURL(path.join(__dirname, "build/index.html"));
+  tray = new Tray(path.join(__dirname, "./icons/tray.ico"));
+  var contextMenu = Menu.buildFromTemplate([
+    {
+      label: "Show Friday",
+      click: function() {
+        friday.show();
+      }
+    },
+    {
+      label: "Quit",
+      click: function() {
+        app.quit();
+      }
+    }
+  ]);
+  tray.setContextMenu(contextMenu);
 
   friday.on("hide", () => {
     isActive = false;
@@ -35,6 +47,8 @@ app.on("ready", () => {
       friday.show();
     }
   });
+
+  friday.loadURL(path.join(__dirname, "build/index.html"));
 
   friday.once("ready-to-show", () => {
     friday.show();

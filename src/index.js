@@ -1,8 +1,10 @@
 const fastn = require("fastn")(require("fastn/domComponents")());
 
+import "normalize.css";
+
 var deleteMe = fastn("input", {
-  placeholder: "Search",
   class: "search",
+  autofocus: true,
   value: fastn.binding("filter"),
   oninput: "value:value",
   type: "text"
@@ -24,7 +26,9 @@ var deleteMeResults = fastn("list", {
     }
 
     if (filter) {
-      results = results.filter(item => ~item.indexOf(filter.toLowerCase()));
+      results = results.filter(
+        item => ~item.toLowerCase().indexOf(filter.toLowerCase())
+      );
     }
 
     return results;

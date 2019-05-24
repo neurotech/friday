@@ -1,0 +1,31 @@
+{
+  "name": "friday",
+  "version": "0.0.1",
+  "description": "Good evening, boss.",
+  "main": "app.js",
+  "scripts": {
+    "clean": "rm -rf .cache/ && rm -rf build/ && rm -rf dist/",
+    "prebundle": "npm run clean",
+    "build": "parcel build src/index.html --out-dir build --public-url ./",
+    "bundle": "npm run build && electron-packager ./ friday --platform=win32 --arch=x64 --asar --out=./dist",
+    "start": "npm run build && electron .",
+    "watch": "parcel serve src/index.html"
+  },
+  "dependencies": {
+    "copy-text-to-clipboard": "^2.1.0",
+    "cpjax": "^1.1.3",
+    "fastn": "^2.12.2"
+  },
+  "devDependencies": {
+    "electron": "^5.0.2",
+    "electron-packager": "^13.1.1",
+    "parcel": "^1.12.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neurotech/friday.git"
+  },
+  "author": "Tim Douglas",
+  "license": "MIT",
+  "homepage": "https://github.com/neurotech/friday#readme"
+}

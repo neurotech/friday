@@ -1,0 +1,31 @@
+:root {
+  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", Arial, sans-serif;
+  --font-family-monospace: Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+}
+
+body {
+  -webkit-app-region: drag;
+  -webkit-user-select: none;
+  font-family: var(--font-family-sans-serif);
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+}
+
+button {
+  -webkit-app-region: no-drag;
+}
+
+input {
+  -webkit-app-region: no-drag;
+}
+
+.container {
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

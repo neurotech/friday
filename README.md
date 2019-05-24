@@ -1,1 +1,3 @@
-# friday
+# Friday
+
+> Good evening, boss.

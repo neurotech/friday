@@ -1,17 +1,17 @@
 const { app, BrowserWindow, globalShortcut, Tray, Menu } = require("electron");
 const path = require("path");
 
-let window = null;
+let friday = null;
 let tray = null;
 
 app.on("ready", () => {
-  window = new BrowserWindow({
+  friday = new BrowserWindow({
     width: 640,
-    height: 160,
+    height: 512,
     show: true,
     frame: false,
     resizable: false,
-    backgroundColor: "#ffffff"
+    transparent: true
   });
 
   tray = new Tray(path.join(__dirname, "./icons/tray.ico"));
@@ -19,7 +19,7 @@ app.on("ready", () => {
     {
       label: "Show Friday",
       click: function() {
-        window.show();
+        friday.show();
       }
     },
     {
@@ -31,13 +31,13 @@ app.on("ready", () => {
   ]);
   tray.setContextMenu(contextMenu);
 
-  window.loadURL(path.join(__dirname, "build/index.html"));
+  friday.loadURL(path.join(__dirname, "build/index.html"));
 
   globalShortcut.register("Control+Space", () => {
-    window.show();
+    friday.show();
   });
 
-  window.once("ready-to-show", () => {
-    window.show();
+  friday.once("ready-to-show", () => {
+    friday.show();
   });
 });

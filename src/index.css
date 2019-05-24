@@ -12,7 +12,6 @@ body {
   font-family: var(--font-family-sans-serif);
   margin: 0;
   padding: 0;
-  background-color: #ffffff;
 }
 
 button {
@@ -28,4 +27,20 @@ input {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.search {
+  width: 95%;
+  padding: 1rem;
+  font-size: 3rem;
+  background-color: black;
+  color: white;
+}
+.results {
+  width: 100%;
+}
+.result {
+  width: 100%;
+  font-size: 2rem;
+  background-color: black;
+  color: white;
 }

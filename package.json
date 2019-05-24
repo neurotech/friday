@@ -8,8 +8,9 @@
     "prebundle": "npm run clean",
     "build": "parcel build src/index.html --out-dir build --public-url ./",
     "bundle": "npm run build && electron-packager ./ friday --platform=win32 --arch=x64 --asar --out=./dist",
+    "serve": "parcel serve src/index.html",
     "start": "npm run build && electron .",
-    "watch": "parcel serve src/index.html"
+    "watch": "parcel watch src/index.html --out-dir build"
   },
   "dependencies": {
     "copy-text-to-clipboard": "^2.1.0",

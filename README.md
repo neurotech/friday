@@ -14,4 +14,4 @@ TBD     | TBD
 
 ## Credits
 
- - @borzale on DEVANZ for helping me with the proof of concept problem solving.
+ - [borzale](https://github.com/borzale) on DEVANZ for helping me with the proof of concept problem solving.

@@ -1,63 +1,26 @@
-const fastn = require("fastn")(require("fastn/domComponents")());
+const domComponents = require("fastn/domComponents");
+const fastn = require("fastn")(domComponents());
+const helpers = require("./helpers");
+const SearchBar = require("./components/SearchBar");
+const CommandList = require("./components/CommandList");
+const Commands = require("./commands");
 
 import "normalize.css";
 
-var deleteMe = fastn("input", {
-  class: "search",
-  autofocus: true,
-  value: fastn.binding("filter"),
-  oninput: "value:value",
-  type: "text"
-}).on("submit", event => {
-  event.preventDefault();
-});
-
-var deleteMeResults = fastn("list", {
-  class: "results",
-  items: fastn.binding("results", "filter", (results, filter) => {
-    var results = results;
-
-    if (!results) {
-      return;
-    }
-
-    if (!filter) {
-      return;
-    }
-
-    if (filter) {
-      results = results.filter(
-        item => ~item.toLowerCase().indexOf(filter.toLowerCase())
-      );
-    }
-
-    return results;
-  }),
-  template: function() {
-    return fastn("div", { class: "result" }, fastn.binding("item"));
-  }
-});
-
-window.addEventListener("load", function() {
+window.addEventListener("load", function onLoad() {
   var state = {
-    results: [
-      "Atocgib",
-      "Jemica",
-      "Avigkas",
-      "Gofmuref",
-      "Cimizto",
-      "Betaleze",
-      "Mofeti",
-      "Egowunwup",
-      "Ipouvnus",
-      "Hodcime"
-    ]
+    commands: Commands(),
+    activeCommand: null
   };
-  var app = {};
-  const view = fastn("div", { class: "container" }, deleteMe, deleteMeResults);
+  var app = helpers(fastn, state);
+  const view = fastn(
+    "div",
+    { class: "container" },
+    SearchBar(fastn, app),
+    CommandList(fastn, app)
+  );
   view.attach(state);
   view.render();
 
-  const mount = document.getElementById("app");
-  mount.appendChild(view.element);
+  document.getElementById("app").appendChild(view.element);
 });

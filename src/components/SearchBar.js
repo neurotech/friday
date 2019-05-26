@@ -43,12 +43,24 @@ module.exports = function createSearchBar(fastn, app) {
         event.preventDefault();
       }
 
+      var selectedCommandBinding = fastn
+        .binding("selectedCommand")
+        .attach(app.state);
+
       var filteredCommands = fastn
         .binding("commands|*", "filter", (commands, filter) =>
           commands.filter(command =>
             command.commandName.match(new RegExp(filter, "i"))
           )
         )
+        .on("change", filteredCommands => {
+          if (
+            filteredCommands &&
+            !~filteredCommands.indexOf(selectedCommandBinding())
+          ) {
+            selectedCommandBinding(filteredCommands[0]);
+          }
+        })
         .attach(app.state);
       var nope = filteredCommands();
       var index = Math.max(nope.indexOf(app.state.selectedCommand), 0);

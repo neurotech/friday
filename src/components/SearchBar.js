@@ -41,12 +41,11 @@ module.exports = function createSearchBar(fastn, app) {
         app.executeCommand();
         event.preventDefault();
       }
-
+    
       var filteredCommands = app.filteredCommandsBinding();
       var index = Math.max(filteredCommands.indexOf(app.selectedCommandBinding()), 0);
 
       console.log('before', index);
-
       if (event.which === upArrowKey) {
         index--;
       } else if (event.which === downArrowKey) {

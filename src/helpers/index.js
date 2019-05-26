@@ -1,29 +1,44 @@
 module.exports = function(fastn, state) {
+
+  var selectedCommandBinding = fastn.binding('selectedCommand').attach(state);
+
+  var filteredCommandsBinding = fastn
+    .binding("commands|*", "filter", (commands, filter) =>
+      commands.filter(command =>
+        command.commandName.match(new RegExp(filter, "i"))
+      )
+    )
+    .on('change', filteredCommands => {
+      if(filteredCommands && !~filteredCommands.indexOf(selectedCommandBinding())){
+            selectedCommandBinding(filteredCommands[0]);
+        }
+    })
+    .attach(state);
+
   return {
+    filteredCommandsBinding,
+    selectedCommandBinding,
     state: state,
     getActiveCommand: function() {
-      var activeCommand = fastn.Model.get(state, "activeCommand");
-      return activeCommand;
+      return selectedCommandBinding();
     },
     setFilteredCommandList: function(commands) {
       fastn.Model.set(state, "filteredCommandList", commands);
     },
     executeCommand: function() {
-      var command = fastn.Model.get(state, "activeCommand");
+      var command = selectedCommandBinding();
       if (command) {
-        var input = fastn.Model.get(state, "filter");
-        command.command(input);
+        command.command(state.filter);
       }
     },
     expandCommand: function() {
-      var commands = fastn.Model.get(state, "commands");
-      if (commands !== null && commands.length >= 1) {
+      var selectedCommand = selectedCommandBinding();
+      if (selectedCommand) {
         var input = fastn.Model.get(state, "filter");
-        var fullCommand = commands[0].commandName;
+        var fullCommand = selectedCommand.commandName;
         if (input !== fullCommand) {
           fastn.Model.set(state, "filter", fullCommand + " ");
         }
-        fastn.Model.set(state, "activeCommand", commands[0]);
       }
     }
   };

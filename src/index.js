@@ -10,8 +10,6 @@ import "normalize.css";
 window.addEventListener("load", function onLoad() {
   var state = {
     commands: Commands(),
-    activeCommand: null,
-    selectedCommand: null,
     filter: ""
   };
   var app = helpers(fastn, state);

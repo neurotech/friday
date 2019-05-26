@@ -31,10 +31,9 @@ module.exports = function createSearchBar(fastn, app) {
       var upArrowKey = 38;
       var downArrowKey = 40;
       if (event.which == tabKey || event.keyCode == tabKey) {
-        var searchBarElement = document.querySelector(".search");
-        searchBarElement.focus();
+        event.target.focus();
         app.expandCommand();
-        moveCursorToEnd(searchBarElement);
+        moveCursorToEnd(event.target);
         event.preventDefault();
       }
 
@@ -43,15 +42,10 @@ module.exports = function createSearchBar(fastn, app) {
         event.preventDefault();
       }
 
-      var filteredCommands = fastn
-        .binding("commands|*", "filter", (commands, filter) =>
-          commands.filter(command =>
-            command.commandName.match(new RegExp(filter, "i"))
-          )
-        )
-        .attach(app.state);
-      var nope = filteredCommands();
-      var index = Math.max(nope.indexOf(app.state.selectedCommand), 0);
+      var filteredCommands = app.filteredCommandsBinding();
+      var index = Math.max(filteredCommands.indexOf(app.selectedCommandBinding()), 0);
+
+      console.log('before', index);
 
       if (event.which === upArrowKey) {
         index--;
@@ -64,6 +58,8 @@ module.exports = function createSearchBar(fastn, app) {
         index = filteredCommands.length - 1;
       }
 
-      fastn.Model.set(app.state, "selectedCommand", filteredCommands[index]);
+      console.log('after', index);
+
+      app.selectedCommandBinding(filteredCommands[index]);
     });
 };

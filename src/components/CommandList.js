@@ -12,11 +12,11 @@ module.exports = function createCommandList(fastn, app) {
           return;
         }
 
-        if (activeCommand) {
-          if (filter.trim().startsWith(activeCommand.commandName)) {
-            return [activeCommand];
-          }
-        }
+        // if (activeCommand) {
+        //   if (filter.trim().startsWith(activeCommand.commandName)) {
+        //     return [activeCommand];
+        //   }
+        // }
 
         if (filter) {
           commands = commands.filter(
@@ -25,9 +25,6 @@ module.exports = function createCommandList(fastn, app) {
                 .toLowerCase()
                 .indexOf(filter.toLowerCase().trim())
           );
-          if (commands.length >= 1) {
-            // might not need this
-          }
         }
 
         return commands;

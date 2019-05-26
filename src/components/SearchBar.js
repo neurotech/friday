@@ -18,6 +18,7 @@ module.exports = function createSearchBar(fastn, app) {
     oninput: "value:value",
     type: "text"
   })
+    .attach(app.state)
     .on("submit", event => {
       event.preventDefault();
     })
@@ -42,14 +43,27 @@ module.exports = function createSearchBar(fastn, app) {
         event.preventDefault();
       }
 
-      if (event.which == upArrowKey || event.keyCode == upArrowKey) {
-        app.setSelectedItem("prev");
-        event.preventDefault();
+      var filteredCommands = fastn
+        .binding("commands|*", "filter", (commands, filter) =>
+          commands.filter(command =>
+            command.commandName.match(new RegExp(filter, "i"))
+          )
+        )
+        .attach(app.state);
+      var nope = filteredCommands();
+      var index = Math.max(nope.indexOf(app.state.selectedCommand), 0);
+
+      if (event.which === upArrowKey) {
+        index--;
+      } else if (event.which === downArrowKey) {
+        index++;
       }
 
-      if (event.which == downArrowKey || event.keyCode == downArrowKey) {
-        app.setSelectedItem("next");
-        event.preventDefault();
+      index = index % filteredCommands.length;
+      if (index < 0) {
+        index = filteredCommands.length - 1;
       }
+
+      fastn.Model.set(app.state, "selectedCommand", filteredCommands[index]);
     });
 };

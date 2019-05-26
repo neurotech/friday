@@ -1,7 +1,6 @@
 module.exports = function generateCommands() {
   var commands = [
     {
-      isSelected: true,
       commandName: "jira",
       displayName: "Get JIRA issue details as Markdown",
       detail:
@@ -11,7 +10,6 @@ module.exports = function generateCommands() {
       }
     },
     {
-      isSelected: false,
       commandName: "something else",
       displayName: "aaaaaaaaaaa",
       detail: "bbbbbbbbbbbbbbbbbb",

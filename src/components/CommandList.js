@@ -22,7 +22,7 @@ module.exports = function createCommandList(fastn, app) {
 
   return fastn("list", {
     class: "command-list",
-    items: filteredCommandsBinding,
+    items: app.filteredCommandsBinding,
     template: function() {
       return CommandItem(fastn, app);
     }

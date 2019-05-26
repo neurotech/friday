@@ -4,7 +4,7 @@ module.exports = function createCommandItem(fastn, app) {
     {
       class: fastn.binding(
         "item",
-        fastn.binding("selectedCommand").attach(app.state),
+        app.selectedCommandBinding,
         function(item, selectedCommand) {
           return [
             "command",

@@ -4,7 +4,7 @@ module.exports = function createCommandList(fastn, app) {
   return fastn("list", {
     class: "command-list",
     items: fastn.binding(
-      "commands",
+      "commands|*",
       "filter",
       "activeCommand",
       (commands, filter, activeCommand) => {

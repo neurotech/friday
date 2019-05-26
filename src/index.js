@@ -3,21 +3,24 @@ const fastn = require("fastn")(domComponents());
 const helpers = require("./helpers");
 const SearchBar = require("./components/SearchBar");
 const CommandList = require("./components/CommandList");
-const Commands = require("./commands");
+const ActiveCommand = require("./components/ActiveCommand");
 
 import "normalize.css";
 
 window.addEventListener("load", function onLoad() {
   var state = {
-    commands: Commands(),
-    filter: ""
+    filter: "",
+    commands: []
   };
+
   var app = helpers(fastn, state);
+
   const view = fastn(
     "div",
     { class: "container" },
     SearchBar(fastn, app),
-    CommandList(fastn, app)
+    CommandList(fastn, app),
+    ActiveCommand(fastn, app)
   );
   view.attach(state);
   view.render();

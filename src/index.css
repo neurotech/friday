@@ -39,3 +39,6 @@ input {
 .command.selected {
   font-weight: bold;
 }
+.active-command {
+  font-style: italic;
+}

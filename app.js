@@ -40,6 +40,11 @@ app.on("ready", () => {
     isActive = true;
   });
 
+  friday.webContents.on("new-window", function(e, url) {
+    e.preventDefault();
+    require("electron").shell.openExternal(url);
+  });
+
   globalShortcut.register("Control+Space", () => {
     if (isActive) {
       friday.hide();

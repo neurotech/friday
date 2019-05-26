@@ -26,38 +26,66 @@ module.exports = function createSearchBar(fastn, app) {
       document.querySelector(".search").focus();
     })
     .on("keydown", event => {
+      var escKey = 27;
+      var backspaceKey = 8;
+      var deleteKey = 46;
       var tabKey = 9;
       var enterKey = 13;
       var upArrowKey = 38;
       var downArrowKey = 40;
-      if (event.which == tabKey || event.keyCode == tabKey) {
+
+      if (event.which === escKey) {
+        app.clearActiveCommand();
+        app.clearFilter();
+        event.preventDefault();
+      }
+
+      if (event.which === tabKey) {
         event.target.focus();
         app.expandCommand();
         moveCursorToEnd(event.target);
         event.preventDefault();
       }
 
-      if (event.which == enterKey || event.keyCode == enterKey) {
+      if (event.which === enterKey) {
         app.executeCommand();
         event.preventDefault();
       }
-    
-      var filteredCommands = app.filteredCommandsBinding();
-      var index = Math.max(filteredCommands.indexOf(app.selectedCommandBinding()), 0);
 
-      console.log('before', index);
+      var filteredCommands = app.filteredCommandsBinding();
+      var index = Math.max(
+        filteredCommands.indexOf(app.selectedCommandBinding()),
+        0
+      );
+
       if (event.which === upArrowKey) {
         index--;
+        moveCursorToEnd(event.target);
+        event.preventDefault();
       } else if (event.which === downArrowKey) {
         index++;
+        moveCursorToEnd(event.target);
+        event.preventDefault();
       }
 
-      index = index % filteredCommands.length;
+      if (filteredCommands.length === 0) {
+        index = 0;
+      } else {
+        index = index % filteredCommands.length;
+      }
       if (index < 0) {
         index = filteredCommands.length - 1;
       }
 
-      console.log('after', index);
+      if (event.which === backspaceKey || event.which === deleteKey) {
+        var activeCommand = app.getActiveCommand();
+        if (
+          activeCommand &&
+          activeCommand.commandName === event.target.value.trim()
+        ) {
+          app.clearActiveCommand();
+        }
+      }
 
       app.selectedCommandBinding(filteredCommands[index]);
     });

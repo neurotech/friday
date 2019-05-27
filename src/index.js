@@ -5,8 +5,6 @@ const SearchBar = require("./components/SearchBar");
 const CommandList = require("./components/CommandList");
 const ActiveCommand = require("./components/ActiveCommand");
 
-import "normalize.css";
-
 window.addEventListener("load", function onLoad() {
   var state = {
     filter: "",

@@ -12,7 +12,10 @@ app.on("ready", () => {
     show: true,
     frame: false,
     resizable: false,
-    transparent: true
+    transparent: true,
+    webPreferences: {
+      nodeIntegration: true
+    }
   });
 
   tray = new Tray(path.join(__dirname, "./icons/tray.ico"));
@@ -53,7 +56,7 @@ app.on("ready", () => {
     }
   });
 
-  friday.loadURL(path.join(__dirname, "build/index.html"));
+  friday.loadURL(path.join(__dirname, "src/index.html"));
 
   friday.once("ready-to-show", () => {
     friday.show();

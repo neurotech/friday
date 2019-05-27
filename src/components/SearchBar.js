@@ -26,6 +26,7 @@ module.exports = function createSearchBar(fastn, app) {
       document.querySelector(".search").focus();
     })
     .on("keydown", event => {
+      var spaceKey = 32;
       var escKey = 27;
       var backspaceKey = 8;
       var deleteKey = 46;
@@ -34,7 +35,12 @@ module.exports = function createSearchBar(fastn, app) {
       var upArrowKey = 38;
       var downArrowKey = 40;
 
+      if (event.ctrlKey && event.which == spaceKey) {
+        window.minimize();
+      }
+
       if (event.which === escKey) {
+        app.clearComponentData();
         app.clearActiveCommand();
         app.clearFilter();
         event.preventDefault();
@@ -49,6 +55,7 @@ module.exports = function createSearchBar(fastn, app) {
 
       if (event.which === enterKey) {
         app.executeCommand();
+        moveCursorToEnd(event.target);
         event.preventDefault();
       }
 
@@ -79,11 +86,14 @@ module.exports = function createSearchBar(fastn, app) {
 
       if (event.which === backspaceKey || event.which === deleteKey) {
         var activeCommand = app.getActiveCommand();
-        if (
-          activeCommand &&
-          activeCommand.commandName === event.target.value.trim()
-        ) {
-          app.clearActiveCommand();
+        if (activeCommand) {
+          if (
+            !event.target.value.startsWith(activeCommand.commandName) ||
+            event.target.value.trim() === activeCommand.commandName
+          ) {
+            app.clearComponentData();
+            app.clearActiveCommand();
+          }
         }
       }
 

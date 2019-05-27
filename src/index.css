@@ -1,25 +1,60 @@
+html,
+body {
+  background: none;
+}
+
 :root {
-  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI",
-    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+  --font-family-sans-serif-normal: "Nunito", -apple-system, BlinkMacSystemFont,
     "Helvetica Neue", Arial, sans-serif;
-  --font-family-monospace: Menlo, Monaco, Consolas, "Liberation Mono",
-    "Courier New", monospace;
+  --font-family-sans-serif-semibold: "Nunito Semibold", -apple-system,
+    BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --font-family-sans-serif-bold: "Nunito Bold", -apple-system,
+    BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --font-family-monospace: "Fira Code Medium", Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  --element-background: rgb(0, 0, 0);
+  --element-border: rgb(0, 0, 0);
+  --element-text: rgb(255, 255, 255);
+  --element-text-subtle: rgb(150, 150, 150);
+  --element-active: rgb(106, 152, 255);
+  --selection-background: rgb(255, 0, 140);
+  --selection-foreground: rgb(255, 255, 255);
+  --caret: rgb(255, 184, 60);
+  --green-background: rgba(0, 184, 148, 0.33);
+  --green-border: rgb(0, 184, 148);
+  --green-text: rgb(12, 211, 171);
+  --yellow-background: rgba(228, 189, 19, 0.33);
+  --yellow-border: rgb(228, 189, 19);
+  --yellow-text: rgb(245, 206, 35);
+  --success-text: rgb(20, 222, 55);
+}
+
+@font-face {
+  font-family: "Nunito Normal";
+  src: url("./fonts/Nunito-SemiBold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Nunito SemiBold";
+  src: url("./fonts/Nunito-SemiBold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Nunito Bold";
+  src: url("./fonts/Nunito-Bold.ttf") format("truetype");
 }
 
 body {
-  -webkit-app-region: drag;
   -webkit-user-select: none;
-  font-family: var(--font-family-sans-serif);
-  margin: 0;
-  padding: 0;
+  font-family: var(--font-family-sans-serif-semibold);
+  color: var(--element-text);
 }
 
-button {
-  -webkit-app-region: no-drag;
+::selection {
+  background: var(--selection-background);
+  color: var(--selection-foreground);
 }
-
-input {
-  -webkit-app-region: no-drag;
+::-moz-selection {
+  background: var(--selection-background);
+  color: var(--selection-foreground);
 }
 
 .container {
@@ -29,16 +64,178 @@ input {
 .search {
   flex: 1;
   outline: 0;
+  padding: 0.5rem 1rem;
+  font-size: 2rem;
+  line-height: 3.5rem;
+  border-radius: 0.33rem;
+  background-color: var(--element-background);
+  border: 2px solid var(--element-border);
+  color: var(--element-text);
+  caret-color: var(--caret);
 }
-.commands {
+.command-list {
+  margin-top: -0.33rem;
+  padding: 0 0 0.33rem 0;
   flex: 1;
+  background-color: var(--element-background);
+  border-radius: 0 0 0.33rem 0.33rem;
 }
 .command {
-  width: 100%;
+  padding: 0.65rem 0.5rem;
 }
 .command.selected {
-  font-weight: bold;
+  background-color: var(--element-active);
+}
+.command.selected .command-detail {
+  color: var(--element-text);
 }
 .active-command {
   font-style: italic;
+}
+.command-logo {
+  float: left;
+  display: block;
+  text-indent: -9999px;
+  margin-right: 0.66rem;
+  width: 40px;
+  height: 40px;
+  background-size: 40px 40px;
+}
+.command-logo.stop {
+  fill: white;
+  background: url(images/icon-stop.png);
+  background-repeat: no-repeat;
+}
+.command-logo.jira {
+  background: url(images/icon-jira.png);
+}
+.command-display-name {
+  font-size: 1.4rem;
+}
+.command-detail {
+  font-family: var(--font-family-sans-serif-normal);
+  font-size: 0.9rem;
+  color: var(--element-text-subtle);
+}
+
+/* Command specific */
+/* JIRA */
+.jira-component-container {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: -0.33rem;
+  padding: 0 1rem 0.65rem 1rem;
+  background-color: var(--element-background);
+  border-radius: 0 0 0.33rem 0.33rem;
+}
+.jira-status {
+  white-space: nowrap;
+  align-self: center;
+  text-align: center;
+  margin-right: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 0.2rem;
+  border: 2px solid var(--element-text-subtle);
+  background-color: var(--element-background);
+  color: var(--element-text-subtle);
+  font-size: 1rem;
+  font-weight: bold;
+}
+.jira-status.status-not-ready {
+}
+.jira-status.status-in-progress {
+  border-color: var(--yellow-border);
+  background-color: var(--yellow-background);
+  color: var(--yellow-text);
+}
+.jira-status.status-code-review {
+}
+.jira-status.status-in-testing {
+}
+.jira-status.status-done {
+  border-color: var(--green-border);
+  background-color: var(--green-background);
+  color: var(--green-text);
+}
+.jira-details {
+  min-width: 0;
+  margin: 0 1rem 0 0;
+  padding: 0.2rem;
+  font-size: 1.2rem;
+}
+.jira-issue-key {
+  margin: 0 0 0.25rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.jira-issue-key-text {
+  white-space: nowrap;
+}
+.jira-issue-summary {
+  font-family: var(--font-family-sans-serif-normal);
+  font-size: 0.9rem;
+  color: var(--element-text-subtle);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.jira-open-issue {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+.jira-open-issue-icon {
+  padding: 0.1rem 0.2rem;
+  font-family: var(--font-family-sans-serif-bold);
+  font-size: 1.2rem;
+  color: var(--element-text);
+  text-decoration: none;
+  width: 2rem;
+  font-weight: bold;
+  text-align: center;
+  align-self: center;
+}
+.connector {
+  margin: 0 0.5rem;
+}
+.connector-line {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.38);
+  stroke-width: 1px;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: dash 0.8s linear 0s 1 normal forwards,
+    fadeout 0.5s linear 1.5s 1 normal forwards;
+}
+.copy-status {
+  opacity: 0;
+  font-size: 0.75rem;
+  color: var(--success-text);
+  white-space: nowrap;
+  animation: fadein 0.2s linear 0.45s 1 normal forwards,
+    fadeout 0.66s linear 2s 1 normal forwards;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeout {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }

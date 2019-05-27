@@ -1,4 +1,11 @@
-const { app, BrowserWindow, globalShortcut, Tray, Menu } = require("electron");
+const {
+  app,
+  BrowserWindow,
+  globalShortcut,
+  Tray,
+  Menu,
+  shell
+} = require("electron");
 const path = require("path");
 
 let friday = null;
@@ -7,12 +14,14 @@ let isActive = true;
 
 app.on("ready", () => {
   friday = new BrowserWindow({
-    width: 640,
+    width: 720,
     height: 512,
+    backgroundColor: null,
     show: true,
     frame: false,
     resizable: false,
     transparent: true,
+    center: true,
     webPreferences: {
       nodeIntegration: true
     }
@@ -45,12 +54,14 @@ app.on("ready", () => {
 
   friday.on("blur", () => {
     isActive = false;
-    friday.hide();
+    if (process.env.NODE_ENV !== "development") {
+      friday.hide();
+    }
   });
 
   friday.webContents.on("new-window", function(e, url) {
     e.preventDefault();
-    require("electron").shell.openExternal(url);
+    shell.openExternal(url);
   });
 
   globalShortcut.register("Control+Space", () => {

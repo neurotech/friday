@@ -43,6 +43,11 @@ app.on("ready", () => {
     isActive = true;
   });
 
+  friday.on("blur", () => {
+    isActive = false;
+    friday.hide();
+  });
+
   friday.webContents.on("new-window", function(e, url) {
     e.preventDefault();
     require("electron").shell.openExternal(url);

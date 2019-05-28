@@ -49,6 +49,9 @@ module.exports = function generateCommands(app) {
         var componentData = app.getComponentData();
         if (componentData) {
           require("electron").shell.openExternal(componentData.url);
+          app.clearActiveCommand();
+          app.clearComponentData();
+          app.clearFilter();
         }
       }
     }

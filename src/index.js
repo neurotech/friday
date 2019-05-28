@@ -13,6 +13,12 @@ window.addEventListener("load", function onLoad() {
 
   var app = helpers(fastn, state);
 
+  require("electron").ipcRenderer.on("clear-state", function() {
+    app.clearActiveCommand();
+    app.clearComponentData();
+    app.clearFilter();
+  });
+
   const view = fastn(
     "div",
     { class: "container" },

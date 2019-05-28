@@ -46,6 +46,7 @@ app.on("ready", () => {
 
   friday.on("hide", () => {
     isActive = false;
+    friday.webContents.send("clear-state");
   });
 
   friday.on("show", () => {

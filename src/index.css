@@ -19,14 +19,23 @@ body {
   --element-active: rgb(106, 152, 255);
   --selection-background: rgb(255, 0, 140);
   --selection-foreground: rgb(255, 255, 255);
-  --caret: rgb(255, 184, 60);
+  --caret: rgb(106, 152, 255);
+  --success-text: rgb(20, 222, 55);
   --green-background: rgba(0, 184, 148, 0.33);
   --green-border: rgb(0, 184, 148);
   --green-text: rgb(12, 211, 171);
   --yellow-background: rgba(228, 189, 19, 0.33);
   --yellow-border: rgb(228, 189, 19);
   --yellow-text: rgb(245, 206, 35);
-  --success-text: rgb(20, 222, 55);
+  --red-background: rgba(206, 12, 87, 0.33);
+  --red-border: rgba(206, 12, 87, 1);
+  --red-text: rgb(228, 24, 102);
+  --purple-background: rgba(86, 0, 184, 0.33);
+  --purple-border: rgb(86, 0, 184);
+  --purple-text: rgb(103, 10, 209);
+  --blue-background: rgba(37, 155, 233, 0.33);
+  --blue-border: rgb(37, 155, 233);
+  --blue-text: rgb(52, 174, 255);
 }
 
 @font-face {
@@ -142,6 +151,9 @@ body {
   font-weight: bold;
 }
 .jira-status.status-not-ready {
+  border-color: var(--red-border);
+  background-color: var(--red-background);
+  color: var(--red-text);
 }
 .jira-status.status-in-progress {
   border-color: var(--yellow-border);
@@ -149,8 +161,14 @@ body {
   color: var(--yellow-text);
 }
 .jira-status.status-code-review {
+  border-color: var(--purple-border);
+  background-color: var(--purple-background);
+  color: var(--purple-text);
 }
 .jira-status.status-in-testing {
+  border-color: var(--blue-border);
+  background-color: var(--blue-background);
+  color: var(--blue-text);
 }
 .jira-status.status-done {
   border-color: var(--green-border);

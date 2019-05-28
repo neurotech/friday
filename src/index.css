@@ -184,7 +184,7 @@ body {
 .jira-issue-key {
   margin: 0 0 0.25rem 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 }
 .jira-issue-key-text {
@@ -214,31 +214,15 @@ body {
   text-align: center;
   align-self: center;
 }
-.connector {
-  margin: 0 0.5rem;
-}
-.connector-line {
-  fill: none;
-  stroke: rgba(255, 255, 255, 0.38);
-  stroke-width: 1px;
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
-  animation: dash 0.8s linear 0s 1 normal forwards,
-    fadeout 0.5s linear 1.5s 1 normal forwards;
-}
+
 .copy-status {
   opacity: 0;
-  font-size: 0.75rem;
+  margin-left: 1rem;
+  font-size: 0.77rem;
   color: var(--success-text);
   white-space: nowrap;
-  animation: fadein 0.2s linear 0.45s 1 normal forwards,
-    fadeout 0.66s linear 2s 1 normal forwards;
-}
-
-@keyframes dash {
-  to {
-    stroke-dashoffset: 0;
-  }
+  animation: fadein 0.2s linear 0.5s 1 normal forwards,
+    fadeout 0.2s linear 1.5s 1 normal forwards;
 }
 
 @keyframes fadein {

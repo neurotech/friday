@@ -28,27 +28,6 @@ module.exports = function jiraComponent(fastn, app) {
     },
     fastn.binding("componentData.key")
   );
-  var connector = svg(
-    "svg",
-    {
-      class: "connector",
-      width: "100%",
-      height: "1px"
-    },
-    svg("path", {
-      class: "connector-line",
-      d: "M0,1 h1000"
-    })
-  );
-  var connectorTemplate = fastn("templater", {
-    data: fastn.binding("componentData"),
-    template: function(model) {
-      var status = model.get("item.status");
-      if (status) {
-        return connector;
-      }
-    }
-  });
   var copyStatus = fastn(
     "div",
     {
@@ -64,7 +43,6 @@ module.exports = function jiraComponent(fastn, app) {
       class: "jira-issue-key"
     },
     keyText,
-    connectorTemplate,
     copyStatus
   ).attach(app.state);
 

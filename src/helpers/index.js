@@ -14,6 +14,15 @@ module.exports = function(fastn, state) {
       }
     }
   };
+  var setConfigValid = function(isValid) {
+    fastn.Model.set(state, "configValid", isValid);
+  };
+  var setAlertMessage = function(message) {
+    fastn.Model.set(state, "alertMessage", message);
+  };
+  var clearAlertMessage = function() {
+    fastn.Model.remove(state, "alertMessage");
+  };
   var getActiveCommand = function() {
     var activeCommand = fastn.Model.get(state, "activeCommand");
     return activeCommand;
@@ -55,6 +64,9 @@ module.exports = function(fastn, state) {
   var helpers = {
     selectedCommandBinding,
     state,
+    setConfigValid,
+    setAlertMessage,
+    clearAlertMessage,
     getActiveCommand,
     clearActiveCommand,
     clearFilter,

@@ -2,6 +2,15 @@ const crelns = require("crelns");
 const svg = crelns.bind(null, "http://www.w3.org/2000/svg");
 
 module.exports = function jiraComponent(fastn, app) {
+  var placeholder = fastn(
+    "div",
+    {
+      class: "jira-placeholder",
+      hidden: fastn.binding("componentData.status", status => status)
+    },
+    "Please enter the issue number and press enter."
+  ).attach(app.state);
+
   var status = fastn(
     "div",
     {
@@ -83,6 +92,7 @@ module.exports = function jiraComponent(fastn, app) {
     {
       class: "jira-component-container"
     },
+    placeholder,
     status,
     details,
     openIssueContainer

@@ -1,8 +1,10 @@
+const Store = require("electron-store");
 const cpjax = require("cpjax");
+const store = new Store();
 
-let jiraURL = process.env.JIRA_URL;
-let username = process.env.JIRA_USERNAME;
-let password = process.env.JIRA_PASSWORD;
+let jiraURL = store.get("jiraUrl");
+let username = store.get("jiraUsername");
+let password = store.get("jiraPassword");
 
 module.exports = function getJiraData(key, callback) {
   cpjax(

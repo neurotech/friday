@@ -6,11 +6,14 @@ const {
   Menu,
   shell
 } = require("electron");
+const config = require("./config");
 const path = require("path");
 
 let friday = null;
 let tray = null;
 let isActive = true;
+
+var configValid = config.initialise();
 
 app.on("ready", () => {
   friday = new BrowserWindow({
@@ -74,6 +77,10 @@ app.on("ready", () => {
   });
 
   friday.loadURL(path.join(__dirname, "src/index.html"));
+
+  friday.webContents.once("dom-ready", () => {
+    friday.webContents.send("config-validation", configValid);
+  });
 
   friday.once("ready-to-show", () => {
     friday.show();

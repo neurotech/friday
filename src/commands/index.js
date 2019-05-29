@@ -1,3 +1,4 @@
+const shutdown = require("electron-shutdown-command");
 const getJiraData = require("./tools/get-jira-data");
 
 module.exports = function generateCommands(app) {
@@ -19,7 +20,11 @@ module.exports = function generateCommands(app) {
       detail: "Shut down your computer.",
       logo: "stop",
       command: function shutDown() {
-        console.error("SHUTTING DOWN! REPLACE ME!");
+        shutdown.shutdown({
+          force: false,
+          timerseconds: 2,
+          debug: process.env.NODE_ENV === "development"
+        });
       }
     },
     {

@@ -19,6 +19,7 @@
     "fastn": "^2.12.2",
     "lodash.find": "^4.6.0",
     "normalize.css": "^8.0.1",
+    "vaporwave": "^1.0.4",
     "zdog": "^1.0.1"
   },
   "devDependencies": {

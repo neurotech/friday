@@ -1,8 +1,9 @@
-const exit = require("./exit");
 const jira = require("./jira");
+const vaporwave = require("./vaporwave");
+const exit = require("./exit");
 const shutdown = require("./shutdown");
 
 module.exports = function generateCommands(app) {
-  var commands = [exit, jira(app), shutdown];
+  var commands = [jira(app), vaporwave(app), exit, shutdown];
   return commands;
 };

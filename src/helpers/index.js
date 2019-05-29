@@ -78,15 +78,15 @@ module.exports = function(fastn, state) {
   var executeCommand = function() {
     expandCommand();
     var command = state.activeCommand;
-    var componentData = fastn.binding("componentData");
+    var componentData = state.componentData;
+    if (command) {
+      var pieces = state.filter.split(" ");
+      command.command(pieces);
+    }
     if (componentData) {
       if (typeof command.followup === "function") {
         command.followup();
       }
-    }
-    if (command) {
-      var pieces = state.filter.split(" ");
-      command.command(pieces);
     }
   };
 

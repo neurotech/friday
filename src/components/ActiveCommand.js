@@ -1,5 +1,6 @@
 const jira = require("./JiraTools");
-const ui = { jira };
+const vaporwave = require("./vaporwave");
+const ui = { jira, vaporwave };
 
 module.exports = function createActiveCommand(fastn, app) {
   return fastn("templater", {

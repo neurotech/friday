@@ -239,7 +239,7 @@ body {
   font-size: 0.77rem;
   color: var(--green-text);
   white-space: nowrap;
-  animation: fadein 0.2s linear 0.5s 1 normal forwards,
+  animation: fadein 0.2s linear 0.2s 1 normal forwards,
     fadeout 0.2s linear 1.5s 1 normal forwards;
 }
 

@@ -4,8 +4,8 @@ body {
 }
 
 :root {
-  --font-family-sans-serif-normal: "Nunito", -apple-system, BlinkMacSystemFont,
-    "Helvetica Neue", Arial, sans-serif;
+  --font-family-sans-serif-regular: "Nunito Regular", -apple-system,
+    BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   --font-family-sans-serif-semibold: "Nunito Semibold", -apple-system,
     BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   --font-family-sans-serif-bold: "Nunito Bold", -apple-system,
@@ -39,8 +39,8 @@ body {
 }
 
 @font-face {
-  font-family: "Nunito Normal";
-  src: url("./fonts/Nunito-SemiBold.ttf") format("truetype");
+  font-family: "Nunito Regular";
+  src: url("./fonts/Nunito-Regular.ttf") format("truetype");
 }
 @font-face {
   font-family: "Nunito SemiBold";
@@ -140,7 +140,7 @@ body {
   font-size: 1.4rem;
 }
 .command-detail {
-  font-family: var(--font-family-sans-serif-normal);
+  font-family: var(--font-family-sans-serif-regular);
   font-size: 0.9rem;
   color: var(--element-text-subtle);
 }
@@ -209,7 +209,7 @@ body {
   white-space: nowrap;
 }
 .jira-issue-summary {
-  font-family: var(--font-family-sans-serif-normal);
+  font-family: var(--font-family-sans-serif-regular);
   font-size: 0.9rem;
   color: var(--element-text-subtle);
   white-space: nowrap;
@@ -241,6 +241,26 @@ body {
   white-space: nowrap;
   animation: fadein 0.2s linear 0.2s 1 normal forwards,
     fadeout 0.2s linear 1.5s 1 normal forwards;
+}
+
+#large-text-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+#large-text {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border-radius: 0.33rem;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  font-size: 100vw;
+  text-align: center;
 }
 
 @keyframes fadein {

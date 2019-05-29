@@ -34,9 +34,17 @@ module.exports = function createSearchBar(fastn, app) {
       var enterKey = 13;
       var upArrowKey = 38;
       var downArrowKey = 40;
+      var lKey = 76;
 
       if (event.ctrlKey && event.which == spaceKey) {
         window.minimize();
+      }
+
+      if (event.ctrlKey && event.which == lKey) {
+        var filter = app.getFilterValue();
+        if (filter) {
+          app.renderLargeText(filter);
+        }
       }
 
       if (event.which === escKey) {

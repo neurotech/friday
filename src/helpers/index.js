@@ -30,6 +30,10 @@ module.exports = function(fastn, state) {
   var clearActiveCommand = function() {
     fastn.Model.remove(state, "activeCommand");
   };
+  var getFilterValue = function() {
+    var filter = fastn.Model.get(state, "filter");
+    return filter;
+  };
   var clearFilter = function() {
     fastn.Model.remove(state, "filter");
   };
@@ -45,6 +49,31 @@ module.exports = function(fastn, state) {
   };
   var clearComponentData = function() {
     fastn.Model.remove(state, "componentData");
+  };
+  var renderLargeText = function(text) {
+    var { BrowserWindow } = require("electron").remote;
+    var path = require("path");
+    let largeTextWindow = new BrowserWindow({
+      show: false,
+      // width: 800,
+      // height: 800,
+      fullscreen: true,
+      backgroundColor: null,
+      frame: false,
+      resizable: false,
+      transparent: true,
+      center: true,
+      webPreferences: {
+        nodeIntegration: true
+      }
+    });
+    largeTextWindow.on("close", () => {
+      largeTextWindow = null;
+    });
+    largeTextWindow.loadURL(
+      path.join(__dirname, `../large-text/index.html?largeText=${text}`)
+    );
+    largeTextWindow.show();
   };
   var executeCommand = function() {
     expandCommand();
@@ -69,11 +98,13 @@ module.exports = function(fastn, state) {
     clearAlertMessage,
     getActiveCommand,
     clearActiveCommand,
+    getFilterValue,
     clearFilter,
     setFilteredCommandList,
     getComponentData,
     setComponentData,
     clearComponentData,
+    renderLargeText,
     executeCommand,
     expandCommand
   };

@@ -1,0 +1,48 @@
+:root {
+  --font-family-sans-serif-regular: "Nunito Regular", -apple-system,
+    BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+}
+
+@font-face {
+  font-family: "Nunito Regular";
+  src: url("../fonts/Nunito-Regular.ttf") format("truetype");
+}
+
+html,
+body {
+  background: none;
+  font-family: var(--font-family-sans-serif-regular);
+}
+
+.large-text-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+.large-text {
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  border-radius: 1rem;
+  background-color: rgba(0, 0, 0, 0.83);
+  color: white;
+  text-align: center;
+  overflow-wrap: break-word;
+  margin: 2rem;
+  font-size: calc(24px + (48 – 24) * ((100vw – 640px) / (1600 – 640)));
+  animation: fadein 0.2s linear 0s 1 normal forwards;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

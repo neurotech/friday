@@ -2,6 +2,8 @@ const tiny = require("tiny-json-http");
 
 var post = function postToPocketDimension(url, callback) {
   // TODO: Flesh out
+  var token = store.get("pocketDimensionToken");
+
   return url;
 };
 

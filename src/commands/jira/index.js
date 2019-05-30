@@ -5,8 +5,7 @@ module.exports = function getJiraCommand(app) {
     commandName: "jira",
     aliases: ["jr", "jra"],
     displayName: "Get JIRA issue details as Markdown",
-    detail:
-      "Search JIRA for a DEV issue number, get it's summary & URL, then combine into Markdown.",
+    detail: "Search JIRA for a DEV issue number, get it's summary & URL, then combine into Markdown.",
     logo: "jira",
     command: function getIssue(input) {
       if (input && typeof input === "object") {
@@ -16,7 +15,7 @@ module.exports = function getJiraCommand(app) {
 
           getJiraData(issueKey, function(err, res) {
             if (err) {
-              console.error(err);
+              return console.error(err);
             }
             app.setComponentData(res);
             require("electron").clipboard.writeText(res.markdown);

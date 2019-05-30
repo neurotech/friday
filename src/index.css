@@ -4,14 +4,12 @@ body {
 }
 
 :root {
-  --font-family-sans-serif-regular: "Nunito Regular", -apple-system,
-    BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
-  --font-family-sans-serif-semibold: "Nunito Semibold", -apple-system,
-    BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
-  --font-family-sans-serif-bold: "Nunito Bold", -apple-system,
-    BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
-  --font-family-monospace: "Fira Code Medium", Menlo, Monaco, Consolas,
-    "Liberation Mono", "Courier New", monospace;
+  --font-family-sans-serif-regular: "Nunito Regular", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial,
+    sans-serif;
+  --font-family-sans-serif-semibold: "Nunito Semibold", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial,
+    sans-serif;
+  --font-family-sans-serif-bold: "Nunito Bold", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --font-family-monospace: "Fira Code Medium", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --element-background: rgb(0, 0, 0);
   --element-border: rgb(0, 0, 0);
   --element-text: rgb(255, 255, 255);
@@ -141,7 +139,7 @@ body {
 }
 .command-detail {
   font-family: var(--font-family-sans-serif-regular);
-  font-size: 0.9rem;
+  font-size: 0.87rem;
   color: var(--element-text-subtle);
 }
 
@@ -240,8 +238,7 @@ body {
   font-size: 0.77rem;
   color: var(--green-text);
   white-space: nowrap;
-  animation: fadein 0.2s linear 0.2s 1 normal forwards,
-    fadeout 0.2s linear 1.5s 1 normal forwards;
+  animation: fadein 0.2s linear 0.2s 1 normal forwards, fadeout 0.2s linear 1.5s 1 normal forwards;
 }
 
 .vaporwave-component-container {
@@ -252,14 +249,7 @@ body {
   margin-top: -0.33rem;
   color: white;
   border-radius: 0 0 0.33rem 0.33rem;
-  background: linear-gradient(
-    -45deg,
-    #f77a54,
-    #ff68a2,
-    #24b2e6,
-    #29ecbf,
-    #ffdf27
-  );
+  background: linear-gradient(-45deg, #f77a54, #ff68a2, #24b2e6, #29ecbf, #ffdf27);
   background-size: 400% 400%;
   animation: Gradient 15s ease infinite;
 }
@@ -285,8 +275,7 @@ body {
   opacity: 0;
   text-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
   transform: translateX(-200px);
-  animation: vaporwave-copy 0.3s ease-out 0.2s 1 forwards,
-    fadeout 0.4s ease-out 1.66s 1 forwards;
+  animation: vaporwave-copy 0.3s ease-out 0.2s 1 forwards, fadeout 0.4s ease-out 1.66s 1 forwards;
 }
 
 @keyframes vaporwave-copy {

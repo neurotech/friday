@@ -70,9 +70,7 @@ module.exports = function(fastn, state) {
     largeTextWindow.on("close", () => {
       largeTextWindow = null;
     });
-    largeTextWindow.loadURL(
-      path.join(__dirname, `../large-text/index.html?largeText=${text}`)
-    );
+    largeTextWindow.loadURL(path.join(__dirname, `../large-text/index.html?largeText=${text}`));
     largeTextWindow.show();
   };
   var executeCommand = function() {
@@ -116,6 +114,9 @@ module.exports = function(fastn, state) {
       if (!commands || !filter) {
         return [];
       }
+      if (filter === "*") {
+        return commands;
+      }
       return commands.filter(
         command =>
           command.commandName.match(new RegExp(filter, "i")) ||
@@ -125,10 +126,7 @@ module.exports = function(fastn, state) {
       );
     })
     .on("change", filteredCommands => {
-      if (
-        filteredCommands &&
-        !~filteredCommands.indexOf(selectedCommandBinding())
-      ) {
+      if (filteredCommands && !~filteredCommands.indexOf(selectedCommandBinding())) {
         selectedCommandBinding(filteredCommands[0]);
       }
     })

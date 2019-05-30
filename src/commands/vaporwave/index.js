@@ -16,6 +16,9 @@ module.exports = function vaporwaveText(app) {
           var transformed = vaporwave(trimmed.join(" "));
           require("electron").clipboard.writeText(transformed);
           app.setComponentData({ copiedToClipboard: true });
+
+          var chimes = new Audio("./sounds/chimes.wav");
+          chimes.play();
         }
       }
     },

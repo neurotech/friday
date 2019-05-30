@@ -13,6 +13,8 @@ module.exports = function vaporwaveComponent(fastn, app) {
         if (pieces.length >= 2) {
           var trimmed = pieces.slice(1);
           return vaporwave(trimmed.join(" "));
+        } else {
+          return "⠀";
         }
       }
     })
@@ -21,12 +23,13 @@ module.exports = function vaporwaveComponent(fastn, app) {
   var copyStatus = fastn(
     "div",
     {
+      class: "vaporwave-copy-status",
       hidden: fastn.binding(
         "componentData.copiedToClipboard",
         copied => !copied
       )
     },
-    "Copied to clipboard!"
+    "~ Copied ~"
   ).attach(app.state);
 
   return fastn(

@@ -244,24 +244,57 @@ body {
     fadeout 0.2s linear 1.5s 1 normal forwards;
 }
 
-#large-text-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-}
-#large-text {
+.vaporwave-component-container {
   display: flex;
-  flex-direction: column;
-  padding: 1rem;
-  border-radius: 0.33rem;
-  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  margin-top: -0.33rem;
   color: white;
-  font-size: 100vw;
-  text-align: center;
+  border-radius: 0 0 0.33rem 0.33rem;
+  background: linear-gradient(
+    -45deg,
+    #f77a54,
+    #ff68a2,
+    #24b2e6,
+    #29ecbf,
+    #ffdf27
+  );
+  background-size: 400% 400%;
+  animation: Gradient 15s ease infinite;
+}
+
+.vaporwave-text {
+  flex: 1;
+  line-height: 3rem;
+  font-size: 1rem;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.275);
+}
+
+.vaporwave-copy-status {
+  flex: 1;
+  text-align: right;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 1.75rem;
+  -webkit-font-smoothing: none;
+  font-style: italic;
+  word-spacing: 10px;
+  letter-spacing: -1px;
+  font-weight: lighter;
+  font-variant: small-caps;
+  opacity: 0;
+  text-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
+  transform: translateX(-200px);
+  animation: vaporwave-copy 0.3s ease-out 0.2s 1 forwards,
+    fadeout 0.4s ease-out 1.66s 1 forwards;
+}
+
+@keyframes vaporwave-copy {
+  to {
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+    transform: translateX(0px);
+    opacity: 1;
+  }
 }
 
 @keyframes fadein {
@@ -278,5 +311,16 @@ body {
   }
   to {
     opacity: 0;
+  }
+}
+@keyframes Gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }

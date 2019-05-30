@@ -20,7 +20,7 @@
     "lodash.find": "^4.6.0",
     "normalize.css": "^8.0.1",
     "vaporwave": "^1.0.4",
-    "zdog": "^1.0.1"
+    "zdog": "metafizzy/zdog#master"
   },
   "devDependencies": {
     "electron": "^5.0.2",

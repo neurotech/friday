@@ -168,7 +168,8 @@ body {
   font-size: 1rem;
   font-weight: bold;
 }
-.jira-status.status-not-ready {
+.jira-status.status-not-ready,
+.jira-status.status-to-do {
   border-color: var(--red-border);
   background-color: var(--red-background);
   color: var(--red-text);

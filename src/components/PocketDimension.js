@@ -1,4 +1,10 @@
 module.exports = function pocketDimensionComponent(fastn, app) {
+  /*
+    ready
+    loading
+    error
+    success
+  */
   var status = fastn(
     "div",
     {

@@ -29,6 +29,8 @@ module.exports = function getJiraCommand(app) {
     detail: "Creates a new link post on Pocket Dimension.",
     logo: "pocket-dimension",
     command: function postLink(input) {
+      app.setComponentData({ status: "ready" });
+
       if (input && typeof input === "object") {
         input = input.filter(Boolean);
         if (input.length === 2) {

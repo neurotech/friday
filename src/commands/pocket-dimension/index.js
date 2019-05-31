@@ -1,15 +1,29 @@
-const tiny = require("tiny-json-http");
+const cpjax = require("cpjax");
+const Store = require("electron-store");
+const store = new Store();
+
+var pocketDimensionUrl = store.get("pocketDimensionUrl");
+var pocketDimensionToken = store.get("pocketDimensionToken");
 
 var post = function postToPocketDimension(url, callback) {
-  // TODO: Flesh out
-  var token = store.get("pocketDimensionToken");
-
-  return url;
+  cpjax(
+    {
+      url: pocketDimensionUrl + "api/items/create",
+      method: "POST",
+      auth: `Bearer ${pocketDimensionToken}`,
+      data: JSON.stringify({ body: url, generateTitle: true })
+    },
+    function(err, res) {
+      if (err) callback(err);
+      callback(null, res);
+    }
+  );
 };
 
 module.exports = function getJiraCommand(app) {
   var pocketDimensionCommand = {
     commandName: "pocket-dimension",
+    componentName: "pocketDimension",
     aliases: ["pocket", "pd", "link"],
     displayName: "Pocket Dimension",
     detail: "Creates a new link post on Pocket Dimension.",
@@ -19,16 +33,20 @@ module.exports = function getJiraCommand(app) {
         input = input.filter(Boolean);
         if (input.length === 2) {
           var url = input[1];
+          app.setComponentData({ status: "loading" });
 
           post(url, function(err, res) {
-            if (err) {
+            if (err && !res) {
+              app.setComponentData({ status: "error" });
               return console.error(err);
             }
-            app.setComponentData(res);
 
-            // Replace this with a different sound:
-            var chimes = new Audio("./sounds/chimes.wav");
-            chimes.play();
+            if (res && !err) {
+              app.setComponentData({ status: "success" });
+
+              var chimes = new Audio("./sounds/link-saved.wav");
+              chimes.play();
+            }
           });
         }
       }

@@ -7,6 +7,7 @@ module.exports = {
         jiraUrl: null,
         jiraUsername: null,
         jiraPassword: null,
+        pocketDimensionUrl: null,
         pocketDimensionToken: null
       }
     });

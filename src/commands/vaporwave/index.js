@@ -3,10 +3,10 @@ const vaporwave = require("vaporwave");
 module.exports = function vaporwaveText(app) {
   var vaporwaveCommand = {
     commandName: "vaporwave",
+    componentName: "vaporwave",
     aliases: ["vape"],
     displayName: "ｖａｐｏｒｗａｖｅ　ｔｅｘｔ",
-    detail:
-      "Transforms text into ｖａｐｏｒｗａｖｅ　ｔｅｘｔ and copies it to your clipboard.",
+    detail: "Transforms text into ｖａｐｏｒｗａｖｅ　ｔｅｘｔ and copies it to your clipboard.",
     logo: "stop",
     command: function vw(input) {
       if (input && typeof input === "object") {

@@ -2,6 +2,7 @@ const shutdown = require("electron-shutdown-command");
 
 module.exports = {
   commandName: "shutdown",
+  componentName: "shutdown",
   aliases: ["power", "turn"],
   displayName: "Shut Down",
   detail: "Shut down your computer.",

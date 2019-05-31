@@ -3,6 +3,7 @@ const getJiraData = require("../utils/get-jira-data");
 module.exports = function getJiraCommand(app) {
   var jiraCommand = {
     commandName: "jira",
+    componentName: "jira",
     aliases: ["jr", "jra"],
     displayName: "Get JIRA issue details as Markdown",
     detail: "Search JIRA for a DEV issue number, get it's summary & URL, then combine into Markdown.",
@@ -17,8 +18,10 @@ module.exports = function getJiraCommand(app) {
             if (err) {
               return console.error(err);
             }
-            app.setComponentData(res);
-            require("electron").clipboard.writeText(res.markdown);
+            if (res) {
+              app.setComponentData(res);
+              require("electron").clipboard.writeText(res.markdown);
+            }
           });
         }
       }

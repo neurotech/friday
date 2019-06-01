@@ -3,7 +3,7 @@ module.exports = {
   aliases: ["quit"],
   displayName: "Exit",
   detail: "Exit Friday.",
-  logo: "stop",
+  logo: "exit",
   command: function exitFriday() {
     window.close();
   }

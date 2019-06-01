@@ -124,15 +124,8 @@ body {
   margin-right: 0.66rem;
   width: 40px;
   height: 40px;
-  background-size: 40px 40px;
-}
-.command-logo.stop {
-  fill: white;
-  background: url(images/icon-stop.png);
   background-repeat: no-repeat;
-}
-.command-logo.jira {
-  background: url(images/icon-jira.png);
+  background-size: 40px 40px;
 }
 .command-display-name {
   font-size: 1.4rem;

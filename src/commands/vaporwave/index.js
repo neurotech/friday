@@ -7,7 +7,7 @@ module.exports = function vaporwaveText(app) {
     aliases: ["vape"],
     displayName: "ｖａｐｏｒｗａｖｅ　ｔｅｘｔ",
     detail: "Transforms text into ｖａｐｏｒｗａｖｅ　ｔｅｘｔ and copies it to your clipboard.",
-    logo: "stop",
+    logo: "vaporwave",
     command: function vw(input) {
       if (input && typeof input === "object") {
         input = input.filter(Boolean);

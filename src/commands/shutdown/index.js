@@ -6,7 +6,7 @@ module.exports = {
   aliases: ["power", "turn"],
   displayName: "Shut Down",
   detail: "Shut down your computer.",
-  logo: "stop",
+  logo: "shutdown",
   command: function shutDown() {
     shutdown.shutdown({
       force: false,

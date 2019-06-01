@@ -14,7 +14,7 @@ body {
   --element-border: rgb(0, 0, 0);
   --element-text: rgb(255, 255, 255);
   --element-text-subtle: rgb(150, 150, 150);
-  --element-active: rgb(106, 152, 255);
+  --element-active: rgb(95, 138, 234);
   --selection-background: rgb(255, 0, 140);
   --selection-foreground: rgb(255, 255, 255);
   --caret: rgb(106, 152, 255);
@@ -109,7 +109,9 @@ body {
   padding: 0.65rem 0.5rem;
 }
 .command.selected {
+  border-left: 3px solid var(--yellow-text);
   background-color: var(--element-active);
+  transition: all 0.15s;
 }
 .command.selected .command-detail {
   color: var(--element-text);

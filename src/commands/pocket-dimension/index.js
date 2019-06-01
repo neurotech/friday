@@ -48,6 +48,12 @@ module.exports = function getJiraCommand(app) {
 
               var chimes = new Audio("./sounds/link-saved.wav");
               chimes.play();
+
+              setTimeout(function waitForIt() {
+                app.clearActiveCommand();
+                app.clearComponentData();
+                app.clearFilter();
+              }, 2500);
             }
           });
         }

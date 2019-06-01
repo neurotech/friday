@@ -107,11 +107,12 @@ body {
 }
 .command {
   padding: 0.65rem 0.5rem;
+  transition: border-left 0.15s, padding-left 0.15s;
 }
 .command.selected {
+  padding-left: 0.65rem;
   border-left: 3px solid var(--yellow-text);
   background-color: var(--element-active);
-  transition: all 0.15s;
 }
 .command.selected .command-detail {
   color: var(--element-text);

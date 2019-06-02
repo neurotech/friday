@@ -11,7 +11,7 @@ var post = function postToPocketDimension(url, callback) {
       url: pocketDimensionUrl + "api/items/create",
       method: "POST",
       auth: `Bearer ${pocketDimensionToken}`,
-      data: JSON.stringify({ body: url, generateTitle: true })
+      data: JSON.stringify({ type: "link", body: url, generateTitle: true })
     },
     function(err, res) {
       if (err) callback(err);

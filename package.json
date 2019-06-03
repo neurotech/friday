@@ -1,6 +1,6 @@
 {
   "name": "friday",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Good evening, boss.",
   "main": "app.js",
   "scripts": {

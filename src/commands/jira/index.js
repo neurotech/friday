@@ -29,10 +29,11 @@ module.exports = function getJiraCommand(app) {
     followup: function openIssueInBrowser() {
       var componentData = app.getComponentData();
       if (componentData) {
-        require("electron").shell.openExternal(componentData.url);
+        var url = componentData.url;
         app.clearActiveCommand();
         app.clearComponentData();
         app.clearFilter();
+        require("electron").shell.openExternal(url);
       }
     }
   };

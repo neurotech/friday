@@ -77,7 +77,7 @@ module.exports = function(fastn, state) {
     expandCommand();
     var command = state.activeCommand;
     var componentData = state.componentData;
-    if (command) {
+    if (command && !componentData) {
       var pieces = state.filter.split(" ");
       command.command(pieces);
     }

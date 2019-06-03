@@ -1,11 +1,3 @@
-/*
-  STATUSES:
-  ---------
-  ready
-  loading
-  error
-  success
-*/
 const Stars = require("./Stars");
 
 module.exports = function pocketDimensionComponent(fastn, app) {

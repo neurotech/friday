@@ -252,11 +252,92 @@ body {
   animation: Gradient 15s ease infinite;
 }
 
+/* Inner most */
+.vaporwave-window {
+  opacity: 0;
+  min-width: 55%;
+  max-width: 66%;
+  position: relative;
+  font-size: 0px;
+  background-color: #d4d0c8;
+  border: 1px solid #d4d0c8;
+  box-shadow: 1px 1px 4px 0px rgba(50, 50, 50, 0.6);
+  animation: fadein 0.25s linear 0.1s 1 forwards normal;
+}
+
+/* Middle */
+.vaporwave-window:before {
+  content: " ";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-top: 1px solid #ffffff;
+  border-left: 1px solid #ffffff;
+  border-bottom: 1px solid #808080;
+  border-right: 1px solid #808080;
+}
+
+/* Outer most */
+.vaporwave-window:after {
+  content: " ";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border-top: 1px solid #d4d0c8;
+  border-left: 1px solid #d4d0c8;
+  border-bottom: 1px solid #404040;
+  border-right: 1px solid #404040;
+}
+.vaporwave-window-titlebar {
+  display: flex;
+  justify-content: space-between;
+  background: linear-gradient(to right, #0a246a, #a6caf0);
+}
+.vaporwave-window-titlebar-left {
+  display: flex;
+}
+.vaporwave-window-wupdate-icon {
+  align-self: center;
+  margin: 2px 3px 3px 2px;
+}
+.vaporwave-window-title-text {
+  align-self: center;
+}
+.vaporwave-close-icon {
+  justify-self: right;
+  align-self: center;
+  margin: 2px 3px 3px 2px;
+}
+
 .vaporwave-text {
-  flex: 1;
-  line-height: 3rem;
-  font-size: 1rem;
-  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.275);
+  position: relative;
+  margin: 6px 5px;
+  padding: 10px;
+  color: black;
+  font-size: 0.9rem;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.1);
+  background-color: white;
+  border-top: 1px solid #404040;
+  border-left: 1px solid #404040;
+  border-bottom: 1px solid #d4d0c8;
+  border-right: 1px solid #d4d0c8;
+  line-height: 1rem;
+}
+.vaporwave-text:before {
+  content: " ";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-top: 1px solid #808080;
+  border-left: 1px solid #808080;
+  border-bottom: 1px solid #ffffff;
+  border-right: 1px solid #ffffff;
 }
 
 .vaporwave-copy-status {

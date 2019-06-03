@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "clean": "rm -rf dist/",
+    "getlatest": "git pull && npm install && npm run bundle",
     "prebundle": "npm run clean",
     "build": "echo 'No build commands specified.'",
     "bundle": "npm run build && electron-packager ./ friday --platform=win32 --arch=x64 --asar --out=./dist",

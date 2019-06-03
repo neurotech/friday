@@ -24,8 +24,8 @@ module.exports = function pocketDimensionComponent(fastn, app) {
       }
     })
   }).attach(app.state);
-  var paperContainer = fastn("div", { class: "pocket-dimension-paper-container" }, paper, url);
 
+  var paperContainer = fastn("div", { class: "pocket-dimension-paper-container" }, paper, url);
   var starfield = Stars();
 
   return fastn(

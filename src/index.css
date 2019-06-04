@@ -382,7 +382,7 @@ body {
   border-radius: 0 0 0 0.33rem;
   background-color: var(--pocket-dimension);
   animation-name: scalein;
-  animation-delay: 0.5s;
+  animation-delay: 0.2s;
   animation-duration: 0.5s;
   animation-direction: normal;
   animation-fill-mode: forwards;
@@ -397,7 +397,7 @@ body {
   border-radius: 0.33rem;
   font-size: 0.85rem;
   font-family: var(--font-family-sans-serif-bold);
-  animation: fadein 0.5s linear 1s 1 normal forwards;
+  animation: fadein 0.5s linear 0.4s 1 normal forwards;
   transition: border-color 0.25s, backgrground-color 0.25s, color 0.25s;
 }
 .pocket-dimension-url.loading {

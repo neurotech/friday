@@ -48,9 +48,15 @@ module.exports = function createSearchBar(fastn, app) {
       }
 
       if (event.which === escKey) {
-        app.clearComponentData();
-        app.clearActiveCommand();
-        app.clearFilter();
+        var filter = app.getFilterValue();
+        if (!filter) {
+          var currentWindow = require("electron").remote.getCurrentWindow();
+          currentWindow.minimize();
+        } else {
+          app.clearComponentData();
+          app.clearActiveCommand();
+          app.clearFilter();
+        }
         event.preventDefault();
       }
 
@@ -68,10 +74,7 @@ module.exports = function createSearchBar(fastn, app) {
       }
 
       var filteredCommands = app.filteredCommandsBinding();
-      var index = Math.max(
-        filteredCommands.indexOf(app.selectedCommandBinding()),
-        0
-      );
+      var index = Math.max(filteredCommands.indexOf(app.selectedCommandBinding()), 0);
 
       if (event.which === upArrowKey) {
         index--;

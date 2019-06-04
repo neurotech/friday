@@ -3,6 +3,7 @@ const Commands = require("../commands");
 
 module.exports = function(fastn, state) {
   var selectedCommandBinding = fastn.binding("selectedCommand").attach(state);
+  var selectedClipboardHistoryItemBinding = fastn.binding("selectedClipboardHistoryItem").attach(state);
   var expandCommand = function() {
     var selectedCommand = selectedCommandBinding();
     if (selectedCommand) {
@@ -11,6 +12,9 @@ module.exports = function(fastn, state) {
       if (input !== fullCommand + " ") {
         fastn.Model.set(state, "filter", fullCommand + " ");
         fastn.Model.set(state, "activeCommand", selectedCommand);
+        if (selectedCommand.initialise && typeof selectedCommand.initialise === "function") {
+          selectedCommand.initialise();
+        }
       }
     }
   };
@@ -55,8 +59,6 @@ module.exports = function(fastn, state) {
     var path = require("path");
     let largeTextWindow = new BrowserWindow({
       show: false,
-      // width: 800,
-      // height: 800,
       fullscreen: true,
       backgroundColor: null,
       frame: false,
@@ -91,6 +93,7 @@ module.exports = function(fastn, state) {
   var helpers = {
     selectedCommandBinding,
     state,
+    selectedClipboardHistoryItemBinding,
     setConfigValid,
     setAlertMessage,
     clearAlertMessage,

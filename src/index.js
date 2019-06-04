@@ -9,7 +9,8 @@ const ActiveCommand = require("./components/ActiveCommand");
 window.addEventListener("load", function onLoad() {
   var state = {
     filter: "",
-    commands: []
+    commands: [],
+    mockClipboard: ["item1", "item2", "item3"]
   };
 
   var app = helpers(fastn, state);

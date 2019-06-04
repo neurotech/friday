@@ -73,26 +73,58 @@ module.exports = function createSearchBar(fastn, app) {
         event.preventDefault();
       }
 
-      var filteredCommands = app.filteredCommandsBinding();
-      var index = Math.max(filteredCommands.indexOf(app.selectedCommandBinding()), 0);
+      var activeCommand = app.getActiveCommand();
 
-      if (event.which === upArrowKey) {
-        index--;
-        moveCursorToEnd(event.target);
-        event.preventDefault();
-      } else if (event.which === downArrowKey) {
-        index++;
-        moveCursorToEnd(event.target);
-        event.preventDefault();
-      }
+      if (activeCommand && activeCommand.isNavigable) {
+        var componentData = app.getComponentData();
+        var index = Math.max(componentData.indexOf(app.selectedClipboardHistoryItemBinding()), 0);
 
-      if (filteredCommands.length === 0) {
-        index = 0;
+        if (event.which === upArrowKey) {
+          index--;
+          moveCursorToEnd(event.target);
+          event.preventDefault();
+        } else if (event.which === downArrowKey) {
+          index++;
+          moveCursorToEnd(event.target);
+          event.preventDefault();
+        }
+
+        if (componentData.length === 0) {
+          index = 0;
+        } else {
+          index = index % componentData.length;
+        }
+        if (index < 0) {
+          index = componentData.length - 1;
+        }
+
+        app.selectedClipboardHistoryItemBinding(componentData[index]);
       } else {
-        index = index % filteredCommands.length;
-      }
-      if (index < 0) {
-        index = filteredCommands.length - 1;
+        /* Initial up/down arrow logic START */
+        var filteredCommands = app.filteredCommandsBinding();
+        var index = Math.max(filteredCommands.indexOf(app.selectedCommandBinding()), 0);
+
+        if (event.which === upArrowKey) {
+          index--;
+          moveCursorToEnd(event.target);
+          event.preventDefault();
+        } else if (event.which === downArrowKey) {
+          index++;
+          moveCursorToEnd(event.target);
+          event.preventDefault();
+        }
+
+        if (filteredCommands.length === 0) {
+          index = 0;
+        } else {
+          index = index % filteredCommands.length;
+        }
+        if (index < 0) {
+          index = filteredCommands.length - 1;
+        }
+
+        app.selectedCommandBinding(filteredCommands[index]);
+        /* Initial up/down arrow logic END */
       }
 
       if (event.which === backspaceKey || event.which === deleteKey) {
@@ -107,7 +139,5 @@ module.exports = function createSearchBar(fastn, app) {
           }
         }
       }
-
-      app.selectedCommandBinding(filteredCommands[index]);
     });
 };

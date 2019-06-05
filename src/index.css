@@ -10,6 +10,7 @@ body {
     sans-serif;
   --font-family-sans-serif-bold: "Nunito Bold", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   --font-family-monospace: "Fira Code Medium", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-family-gotham-rounded-medium: "Gotham Rounded Medium";
   --element-background: rgb(0, 0, 0);
   --element-border: rgb(0, 0, 0);
   --element-text: rgb(255, 255, 255);
@@ -21,19 +22,19 @@ body {
   --success-text: rgb(20, 222, 55);
   --green-background: rgba(0, 184, 148, 0.33);
   --green-border: rgb(0, 184, 148);
-  --green-text: rgb(12, 211, 171);
+  --green-text: rgb(0, 232, 185);
   --yellow-background: rgba(228, 189, 19, 0.33);
   --yellow-border: rgb(228, 189, 19);
-  --yellow-text: rgb(245, 206, 35);
+  --yellow-text: rgb(255, 224, 89);
   --red-background: rgba(206, 12, 87, 0.33);
   --red-border: rgba(206, 12, 87, 1);
-  --red-text: rgb(228, 24, 102);
-  --purple-background: rgba(86, 0, 184, 0.33);
+  --red-text: rgb(255, 91, 154);
+  --purple-background: rgba(86, 0, 184, 0.55);
   --purple-border: rgb(86, 0, 184);
-  --purple-text: rgb(103, 10, 209);
+  --purple-text: rgb(210, 170, 255);
   --blue-background: rgba(37, 155, 233, 0.33);
   --blue-border: rgb(37, 155, 233);
-  --blue-text: rgb(52, 174, 255);
+  --blue-text: rgb(92, 190, 255);
   --pocket-dimension: rgb(255, 0, 140);
 }
 
@@ -48,6 +49,10 @@ body {
 @font-face {
   font-family: "Nunito Bold";
   src: url("./fonts/Nunito-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Gotham Rounded Medium";
+  src: url("./fonts/Gotham-Rounded-Medium.ttf") format("truetype");
 }
 
 body {
@@ -150,6 +155,12 @@ body {
   background-color: var(--element-background);
   border-radius: 0 0 0.33rem 0.33rem;
 }
+.jira-placeholder {
+  width: 100%;
+  padding: 0.8rem 0rem;
+  text-align: center;
+  animation: fadein 0.5s ease-out 0s 1 normal forwards;
+}
 .jira-status {
   white-space: nowrap;
   align-self: center;
@@ -157,7 +168,6 @@ body {
   margin-right: 0.5rem;
   padding: 0.5rem;
   border-radius: 0.2rem;
-  border: 2px solid var(--element-text-subtle);
   background-color: var(--element-background);
   color: var(--element-text-subtle);
   font-size: 1rem;
@@ -165,27 +175,23 @@ body {
 }
 .jira-status.status-not-ready,
 .jira-status.status-to-do {
-  border-color: var(--red-border);
   background-color: var(--red-background);
   color: var(--red-text);
 }
 .jira-status.status-in-progress {
-  border-color: var(--yellow-border);
   background-color: var(--yellow-background);
   color: var(--yellow-text);
 }
-.jira-status.status-code-review {
-  border-color: var(--purple-border);
+.jira-status.status-code-review,
+.jira-status.status-design {
   background-color: var(--purple-background);
   color: var(--purple-text);
 }
 .jira-status.status-in-testing {
-  border-color: var(--blue-border);
   background-color: var(--blue-background);
   color: var(--blue-text);
 }
 .jira-status.status-done {
-  border-color: var(--green-border);
   background-color: var(--green-background);
   color: var(--green-text);
 }
@@ -196,7 +202,7 @@ body {
   font-size: 1.2rem;
 }
 .jira-issue-key {
-  margin: 0 0 0.25rem 0;
+  margin: 0 0 0.2rem 0;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -205,8 +211,8 @@ body {
   white-space: nowrap;
 }
 .jira-issue-summary {
-  font-family: var(--font-family-sans-serif-regular);
-  font-size: 0.9rem;
+  font-family: var(--font-family-gotham-rounded-medium);
+  font-size: 0.8rem;
   color: var(--element-text-subtle);
   white-space: nowrap;
   overflow: hidden;

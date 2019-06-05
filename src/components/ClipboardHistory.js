@@ -1,5 +1,5 @@
 module.exports = function clipboardHistoryComponent(fastn, app) {
-  var mockClipboardHistoryList = fastn("list", {
+  var clipboardHistoryList = fastn("list", {
     class: "clipboard-history-list",
     items: app.state.mockClipboard,
     template: function() {
@@ -20,6 +20,6 @@ module.exports = function clipboardHistoryComponent(fastn, app) {
     {
       class: "clipboard-history-component-container"
     },
-    mockClipboardHistoryList
+    clipboardHistoryList
   ).attach(app.state);
 };

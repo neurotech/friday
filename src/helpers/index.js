@@ -79,12 +79,15 @@ module.exports = function(fastn, state) {
     expandCommand();
     var command = state.activeCommand;
     var componentData = state.componentData;
+    var selectedClipboardHistoryItem = selectedClipboardHistoryItemBinding();
     if (command && !componentData) {
       var pieces = state.filter.split(" ");
       command.command(pieces);
     }
     if (componentData) {
-      if (typeof command.followup === "function") {
+      if (command.isNavigable) {
+        command.command(selectedClipboardHistoryItem);
+      } else if (typeof command.followup === "function") {
         command.followup();
       }
     }

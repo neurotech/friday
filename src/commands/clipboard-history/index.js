@@ -15,7 +15,12 @@ module.exports = function getClipboardHistoryCommand(app) {
     },
     command: function copyHistoryItem(input) {
       require("electron").clipboard.writeText(input);
+
+      // Replace this with a new sound:
+      var chimes = new Audio("./sounds/chimes.wav");
+      chimes.play();
     },
+    // Should followup() clear out the filter, etc?
     followup: null
   };
 

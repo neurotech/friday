@@ -8,19 +8,21 @@ module.exports = function getClipboardHistoryCommand(app) {
     logo: "clipboard",
     isNavigable: true,
     initialise: function initialiseClipboardHistoryCommand() {
-      // Get list of clipboard history items from Main process, then:
-      // app.setComponentData(items)
-
-      app.setComponentData(app.state.mockClipboard);
+      app.setComponentData(app.state.clipboardHistory);
     },
     command: function copyHistoryItem(input) {
-      require("electron").clipboard.writeText(input);
+      var clipboard = require("electron").clipboard;
+      var chimes = new Audio("./sounds/screenshot.wav");
+      var currentWindow = require("electron").remote.getCurrentWindow();
 
-      // Replace this with a new sound:
-      var chimes = new Audio("./sounds/chimes.wav");
+      clipboard.writeText(input.fullText);
       chimes.play();
+      currentWindow.minimize();
+
+      app.clearActiveCommand();
+      app.clearComponentData();
+      app.clearFilter();
     },
-    // Should followup() clear out the filter, etc?
     followup: null
   };
 

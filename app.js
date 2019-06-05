@@ -1,12 +1,6 @@
-const {
-  app,
-  BrowserWindow,
-  globalShortcut,
-  Tray,
-  Menu,
-  shell
-} = require("electron");
+const { app, BrowserWindow, globalShortcut, Tray, Menu, shell } = require("electron");
 const config = require("./config");
+const clipboard = require("./clipboard");
 const path = require("path");
 
 let friday = null;
@@ -18,7 +12,7 @@ var configValid = config.initialise();
 app.on("ready", () => {
   friday = new BrowserWindow({
     width: 720,
-    height: 512,
+    height: 540,
     backgroundColor: null,
     show: true,
     frame: false,
@@ -80,6 +74,14 @@ app.on("ready", () => {
 
   friday.webContents.once("dom-ready", () => {
     friday.webContents.send("config-validation", configValid);
+  });
+
+  friday.webContents.on("did-finish-load", () => {
+    clipboard.watch(items => {
+      if (items) {
+        friday.webContents.send("clipboard-update", items);
+      }
+    });
   });
 
   friday.once("ready-to-show", () => {

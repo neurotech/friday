@@ -10,7 +10,7 @@ window.addEventListener("load", function onLoad() {
   var state = {
     filter: "",
     commands: [],
-    mockClipboard: ["item1", "item2", "item3"]
+    clipboardHistory: []
   };
 
   var app = helpers(fastn, state);
@@ -28,6 +28,18 @@ window.addEventListener("load", function onLoad() {
     if (!valid) {
       app.setAlertMessage("Invalid config!");
     }
+  });
+
+  ipc.on("clipboard-update", function(event, history) {
+    var sorted = [...history];
+    sorted.sort(function compare(a, b) {
+      var dateA = a.epoch;
+      var dateB = b.epoch;
+      return dateB - dateA;
+    });
+    app.setClipboardHistory(sorted);
+    app.setComponentData(sorted);
+    app.selectedClipboardHistoryItemBinding(sorted[0]);
   });
 
   const view = fastn(

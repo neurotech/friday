@@ -54,6 +54,9 @@ module.exports = function(fastn, state) {
   var clearComponentData = function() {
     fastn.Model.remove(state, "componentData");
   };
+  var setClipboardHistory = function(history) {
+    fastn.Model.set(state, "clipboardHistory", history);
+  };
   var renderLargeText = function(text) {
     var { BrowserWindow } = require("electron").remote;
     var path = require("path");
@@ -108,6 +111,7 @@ module.exports = function(fastn, state) {
     getComponentData,
     setComponentData,
     clearComponentData,
+    setClipboardHistory,
     renderLargeText,
     executeCommand,
     expandCommand

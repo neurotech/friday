@@ -9,7 +9,7 @@ body {
   --font-family-sans-serif-semibold: "Nunito Semibold", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial,
     sans-serif;
   --font-family-sans-serif-bold: "Nunito Bold", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
-  --font-family-monospace: "Fira Code Medium", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-family-monospace: "Fira Code Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --font-family-gotham-rounded-medium: "Gotham Rounded Medium";
   --element-background: rgb(0, 0, 0);
   --element-border: rgb(0, 0, 0);
@@ -436,8 +436,52 @@ body {
 }
 
 /* Clipboard History */
-.history-item.selected {
-  color: red;
+.clipboard-history-component-container {
+  display: flex;
+  margin-top: -0.33rem;
+  padding: 0 0 0.5rem 0;
+  background-color: var(--element-background);
+  border-radius: 0 0 0.33rem 0.33rem;
+}
+.clipboard-history-list {
+  width: 50%;
+}
+.clipboard-history-item {
+  margin: 0;
+  padding: 0.5rem 0 0.5rem 0.5rem;
+  transition: border-left 0.15s, padding-left 0.15s;
+  color: var(--element-text-subtle);
+}
+.clipboard-history-item.selected {
+  padding-left: 0.65rem;
+  border-left: 3px solid var(--yellow-text);
+  background: var(--element-active);
+  color: var(--element-text);
+}
+.clipboard-history-detail {
+  display: flex;
+  width: 50%;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0;
+  animation: fadein 0.25s linear 0s 1 normal forwards;
+}
+.clipboard-history-fulltext {
+  margin: 0;
+  padding: 0 0.75rem 0 1rem;
+  white-space: pre-wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: var(--font-family-monospace);
+  font-size: 0.8rem;
+  line-height: 1.2rem;
+}
+.clipboard-history-epoch {
+  width: 100%;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--element-text-subtle);
+  padding: 0 0 0.8rem 0;
 }
 
 /* Animations */

@@ -38,7 +38,6 @@ window.addEventListener("load", function onLoad() {
       return dateB - dateA;
     });
     app.setClipboardHistory(sorted);
-    app.setComponentData(sorted);
     app.selectedClipboardHistoryItemBinding(sorted[0]);
   });
 

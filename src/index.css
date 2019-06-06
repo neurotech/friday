@@ -489,6 +489,27 @@ body {
   padding: 0 0 0.8rem 0;
 }
 
+/* RightGIF */
+.rightgif-component-container {
+  display: flex;
+  margin-top: -0.33rem;
+  padding: 0 0 0.5rem 0;
+  background-color: var(--element-background);
+  border-radius: 0 0 0.33rem 0.33rem;
+}
+.rightgif-image {
+  width: 100%;
+  text-align: center;
+  padding: 0.5rem;
+}
+.rightgif-image img {
+  max-width: 600px;
+  max-height: 400px;
+}
+.rightgif-image .fadein {
+  animation: fadein 0.5s ease-out 0s 1 normal forwards;
+}
+
 /* Animations */
 @keyframes vaporwave-copy {
   to {

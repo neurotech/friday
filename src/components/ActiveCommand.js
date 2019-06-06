@@ -1,8 +1,10 @@
-const jira = require("./JiraTools");
-const vaporwave = require("./vaporwave");
-const pocketDimension = require("./PocketDimension");
-const clipboardHistory = require("./ClipboardHistory");
-const ui = { jira, vaporwave, pocketDimension, clipboardHistory };
+const ui = {
+  jira: require("./JiraTools"),
+  vaporwave: require("./vaporwave"),
+  pocketDimension: require("./PocketDimension"),
+  clipboardHistory: require("./ClipboardHistory"),
+  rightGIF: require("./RightGIF")
+};
 
 module.exports = function createActiveCommand(fastn, app) {
   return fastn("templater", {

@@ -445,12 +445,17 @@ body {
 }
 .clipboard-history-list {
   width: 50%;
+  min-width: 0;
+  flex-basis: 50%;
 }
 .clipboard-history-item {
   margin: 0;
-  padding: 0.5rem 0 0.5rem 0.5rem;
+  padding: 0.5rem;
   transition: border-left 0.15s, padding-left 0.15s;
   color: var(--element-text-subtle);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 .clipboard-history-item.selected {
   padding-left: 0.65rem;

@@ -11,10 +11,7 @@ module.exports = function clipboardHistoryComponent(fastn, app) {
           })
         },
         fastn.binding("item.fullText", item => {
-          if (item) {
-            var maxLength = 40;
-            return item.length >= maxLength - 3 ? item.substring(0, maxLength) + "..." : item;
-          }
+          return item;
         })
       );
     }

@@ -14,12 +14,14 @@ module.exports = function getRightGIFCommand(app) {
         if (input.length >= 2) {
           var cloned = [...input];
           var trimmed = cloned.slice(1, cloned.length);
+          app.setComponentData({ status: "loading" });
           getRightGIF(trimmed.join(" "), function(err, res) {
             if (err) {
+              app.setComponentData({ status: "error" });
               return console.error(err);
             }
             if (res) {
-              app.setComponentData({ url: res });
+              app.setComponentData({ status: "success", url: res });
             }
           });
         }

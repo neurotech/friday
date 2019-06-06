@@ -8,10 +8,10 @@ module.exports = function rightGIFComponent(fastn, app) {
   var gif = fastn(
     "div",
     {
-      class: "rightgif-image"
+      class: fastn.binding("componentData.status", status => ["rightgif-image", status])
     },
     imageElement
-  );
+  ).attach(app.state);
 
   return fastn(
     "div",

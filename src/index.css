@@ -493,31 +493,42 @@ body {
 .rightgif-component-container {
   display: flex;
   margin-top: -0.33rem;
-  padding: 0 0 0.5rem 0;
   background-color: var(--element-background);
   border-radius: 0 0 0.33rem 0.33rem;
 }
+.rightgif-loading-text {
+  margin: 40px 0;
+  animation: fadein 0.5s ease-out 0s 1 normal forwards;
+  font-size: 1rem;
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
+}
 .rightgif-image {
   width: 100%;
+  min-width: 250px;
+  min-height: 100px;
   text-align: center;
-  padding: 0.5rem;
+  padding: 1rem;
+  border-radius: 0 0 0.33rem 0.33rem;
+  transition: background 0.66s;
 }
 .rightgif-image img {
   max-width: 600px;
   max-height: 400px;
+  border-radius: 0.33rem;
+  border: 1px solid black;
 }
 .rightgif-image .fadein {
   animation: fadein 0.5s ease-out 0s 1 normal forwards;
 }
 
 .rightgif-image.loading {
-  background-color: var(--yellow-background);
+  background-color: rgb(255, 208, 0);
 }
 .rightgif-image.success {
-  background-color: var(--green-background);
+  background-color: rgb(0, 0, 0);
 }
 .rightgif-image.error {
-  background-color: var(--red-background);
+  background-color: rgb(255, 0, 64);
 }
 
 /* Animations */

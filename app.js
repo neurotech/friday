@@ -20,24 +20,25 @@ app.on("ready", () => {
     transparent: true,
     center: true,
     webPreferences: {
-      nodeIntegration: true
-    }
+      enableRemoteModule: true,
+      nodeIntegration: true,
+    },
   });
 
   tray = new Tray(path.join(__dirname, "./icons/tray.ico"));
   var contextMenu = Menu.buildFromTemplate([
     {
       label: "Show Friday",
-      click: function() {
+      click: function () {
         friday.show();
-      }
+      },
     },
     {
       label: "Quit",
-      click: function() {
+      click: function () {
         app.quit();
-      }
-    }
+      },
+    },
   ]);
   tray.setContextMenu(contextMenu);
 
@@ -57,7 +58,7 @@ app.on("ready", () => {
     }
   });
 
-  friday.webContents.on("new-window", function(e, url) {
+  friday.webContents.on("new-window", function (e, url) {
     e.preventDefault();
     shell.openExternal(url);
   });
@@ -77,7 +78,7 @@ app.on("ready", () => {
   });
 
   friday.webContents.on("did-finish-load", () => {
-    clipboard.watch(items => {
+    clipboard.watch((items) => {
       if (items) {
         friday.webContents.send("clipboard-update", items);
       }

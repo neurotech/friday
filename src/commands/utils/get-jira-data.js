@@ -9,12 +9,10 @@ let password = store.get("jiraPassword");
 module.exports = function getJiraData(key, callback) {
   cpjax(
     {
-      url: `${jiraURL}rest/api/2/search?jql=key="DEV-${key}"&fields=key,summary,status`,
-      auth:
-        "Basic " +
-        new Buffer(username + ":" + password, "utf8").toString("base64")
+      url: `${jiraURL}rest/api/3/search?jql=key="DEV-${key}"&fields=key,summary,status`,
+      auth: "Basic " + Buffer.from(username + ":" + password, "utf8").toString("base64"),
     },
-    function(err, data) {
+    function (err, data) {
       if (err) return callback(err);
       let parsed = JSON.parse(data);
       let issue = parsed.issues[0];
@@ -29,7 +27,7 @@ module.exports = function getJiraData(key, callback) {
         status: status,
         combined: key + " - " + summary,
         markdown: `\`${key} - ${summary}\` (${url})`,
-        url: url
+        url: url,
       };
       return callback(null, result);
     }

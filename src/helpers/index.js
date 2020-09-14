@@ -1,10 +1,10 @@
 const find = require("lodash.find");
 const Commands = require("../commands");
 
-module.exports = function(fastn, state) {
+module.exports = function (fastn, state) {
   var selectedCommandBinding = fastn.binding("selectedCommand").attach(state);
   var selectedClipboardHistoryItemBinding = fastn.binding("selectedClipboardHistoryItem").attach(state);
-  var expandCommand = function() {
+  var expandCommand = function () {
     var selectedCommand = selectedCommandBinding();
     if (selectedCommand) {
       var input = fastn.Model.get(state, "filter");
@@ -18,46 +18,46 @@ module.exports = function(fastn, state) {
       }
     }
   };
-  var setConfigValid = function(isValid) {
+  var setConfigValid = function (isValid) {
     fastn.Model.set(state, "configValid", isValid);
   };
-  var setAlertMessage = function(message) {
+  var setAlertMessage = function (message) {
     fastn.Model.set(state, "alertMessage", message);
   };
-  var clearAlertMessage = function() {
+  var clearAlertMessage = function () {
     fastn.Model.remove(state, "alertMessage");
   };
-  var getActiveCommand = function() {
+  var getActiveCommand = function () {
     var activeCommand = fastn.Model.get(state, "activeCommand");
     return activeCommand;
   };
-  var clearActiveCommand = function() {
+  var clearActiveCommand = function () {
     fastn.Model.remove(state, "activeCommand");
   };
-  var getFilterValue = function() {
+  var getFilterValue = function () {
     var filter = fastn.Model.get(state, "filter");
     return filter;
   };
-  var clearFilter = function() {
+  var clearFilter = function () {
     fastn.Model.remove(state, "filter");
   };
-  var setFilteredCommandList = function(commands) {
+  var setFilteredCommandList = function (commands) {
     fastn.Model.set(state, "filteredCommandList", commands);
   };
-  var getComponentData = function() {
+  var getComponentData = function () {
     var componentData = fastn.Model.get(state, "componentData");
     return componentData;
   };
-  var setComponentData = function(data) {
+  var setComponentData = function (data) {
     fastn.Model.set(state, "componentData", data);
   };
-  var clearComponentData = function() {
+  var clearComponentData = function () {
     fastn.Model.remove(state, "componentData");
   };
-  var setClipboardHistory = function(history) {
+  var setClipboardHistory = function (history) {
     fastn.Model.set(state, "clipboardHistory", history);
   };
-  var renderLargeText = function(text) {
+  var renderLargeText = function (text) {
     var { BrowserWindow } = require("electron").remote;
     var path = require("path");
     let largeTextWindow = new BrowserWindow({
@@ -69,8 +69,9 @@ module.exports = function(fastn, state) {
       transparent: true,
       center: true,
       webPreferences: {
-        nodeIntegration: true
-      }
+        enableRemoteModule: true,
+        nodeIntegration: true,
+      },
     });
     largeTextWindow.on("close", () => {
       largeTextWindow = null;
@@ -78,7 +79,7 @@ module.exports = function(fastn, state) {
     largeTextWindow.loadURL(path.join(__dirname, `../large-text/index.html?largeText=${text}`));
     largeTextWindow.show();
   };
-  var executeCommand = function() {
+  var executeCommand = function () {
     expandCommand();
     var command = state.activeCommand;
     var componentData = state.componentData;
@@ -114,7 +115,7 @@ module.exports = function(fastn, state) {
     setClipboardHistory,
     renderLargeText,
     executeCommand,
-    expandCommand
+    expandCommand,
   };
 
   helpers.state.commands = Commands(helpers);
@@ -128,14 +129,14 @@ module.exports = function(fastn, state) {
         return commands;
       }
       return commands.filter(
-        command =>
+        (command) =>
           command.commandName.match(new RegExp(filter, "i")) ||
-          find(command.aliases, function(alias) {
+          find(command.aliases, function (alias) {
             return alias.match(new RegExp(filter, "i"));
           })
       );
     })
-    .on("change", filteredCommands => {
+    .on("change", (filteredCommands) => {
       if (filteredCommands && !~filteredCommands.indexOf(selectedCommandBinding())) {
         selectedCommandBinding(filteredCommands[0]);
       }
